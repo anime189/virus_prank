@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informasi Cartel Meksiko by David</title>
+  <style>
+    body {
+      background-color: black;
+      color: #0f0;
+      text-align: center;
+      font-family: monospace;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    h1 {
+      font-size: 30px;
+      text-shadow: 2px 2px 5px #ff0;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .leak-container {
+      margin-top: 20px;
+      color: lime;
+      font-size: 16px;
+      text-align: left;
+      padding: 0 10px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="main-container">
+    <h1>informasi cartel meksiko by David</h1>
+    <button onclick="startPrank()">MASUK</button>
+  </div>
+  
+  <script>
+    function startPrank() {
+      // Hapus tampilan awal
+      document.getElementById('main-container').remove();
+      
+      // Buat container untuk simulasi peretasan
+      let container = document.createElement('div');
+      container.style.marginTop = '50px';
+      document.body.appendChild(container);
+      
+      // Tampilkan pesan secara bertahap
+      container.innerHTML = "<h1 style='color: green; text-shadow: 2px 2px 5px white;'>PERETASAN SUKSES!</h1>";
+      setTimeout(() => {
+        container.innerHTML += "<p>Mengakses data pribadi...</p>";
+      }, 2000);
+      setTimeout(() => {
+        container.innerHTML += "<p>Mengumpulkan data login...</p>";
+      }, 4000);
+      setTimeout(() => {
+        container.innerHTML += "<p>Mengungkap informasi sensitif...</p>";
+      }, 6000);
+      setTimeout(() => {
+        container.innerHTML += "<p>Memproses data bocor...</p>";
+      }, 8000);
+      setTimeout(() => {
+        container.innerHTML += "<p><strong>Data telah bocor!</strong></p>";
+        // Setelah simulasi, ambil dan tampilkan data pengunjung
+        fetchVisitorInfo();
+      }, 10000);
+    }
+    
+    function fetchVisitorInfo() {
+      // Menggunakan API ipapi.co untuk mendapatkan info pengunjung
+      fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => {
+          let ip = data.ip || "Unknown";
+          let city = data.city || "Unknown";
+          let region = data.region || "Unknown";
+          let country = data.country_name || "Unknown";
+          
+          // Data email dan nomor telepon disimulasikan dan disensor
+          let email = "******@example.com";
+          let phone = "**********";
+          
+          let infoHTML = `<h2>Visitor Info:</h2>
+            <div class="leak-container">
+              <p><strong>IP:</strong> ${ip}</p>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Phone:</strong> ${phone}</p>
+              <p><strong>Location:</strong> ${city}, ${region}, ${country}</p>
+            </div>`;
+          document.body.innerHTML += infoHTML;
+        })
+        .catch(error => {
+          console.log("Error fetching visitor info:", error);
+        });
+    }
+  </script>
+</body>
+</html>
